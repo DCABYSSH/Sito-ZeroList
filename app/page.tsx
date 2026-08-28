@@ -11,8 +11,7 @@ import {
   getPaginationRowModel, 
   flexRender, 
   ColumnDef, 
-  Row, 
-  HeaderGroup 
+  Row 
 } from '@tanstack/react-table';
 import { Player } from '@/types/player';
 import { 
@@ -56,14 +55,14 @@ interface LeaderboardPlayer {
 const computeOverallPoints = (player: Player): number => {
   return modes.reduce((acc, m) => {
     if (m === 'Overall') return acc;
-    const tier = (player as Record<string, any>)[m];
+    const tier = (player as Record<string, any>[any])[m];
     return acc + (TIER_POINTS_MAP[tier] || 0);
   }, 0);
 };
 
 export default function Home() {
   const [data, setData] = useState<Player[]>([]);
-  const [selectedMode, setSelectedMode] = useState('Overall');
+  const [selectedMode, setSelectedMode] = useState<string>('Overall');
   const [globalFilter, setGlobalFilter] = useState('');
   const [loading, setLoading] = useState(true);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
@@ -85,7 +84,7 @@ export default function Home() {
       ...p,
       calculatedOverall: computeOverallPoints(p)
     })).sort((a, b) => {
-      if (selectedMode === 'Overall') return b.calculatedOverall - a.calculatedOverall;
+      if (selectedMode === 'Overall') return (b as any).calculatedOverall - (a as any).calculatedOverall;
       const tierA = (a as Record<string, any>)[selectedMode] || 'Unranked';
       const tierB = (b as Record<string, any>)[selectedMode] || 'Unranked';
       return (TIER_POINTS_MAP[tierB] || 0) - (TIER_POINTS_MAP[tierA] || 0);
@@ -94,8 +93,8 @@ export default function Home() {
 
   const top3Podium = useMemo<LeaderboardPlayer[]>(() => {
     return filteredData.slice(0, 3).map((p, idx) => {
-      const tier = (p[selectedMode as keyof Player] as string) || 'Unranked';
-      const elo = selectedMode === 'Overall' ? p.calculatedOverall : (TIER_POINTS_MAP[tier] || 0);
+      const tier = (p as Record<string, any>)[selectedMode] || 'Unranked';
+      const elo = selectedMode === 'Overall' ? (p as any).calculatedOverall : (TIER_POINTS_MAP[tier] || 0);
       return { username: p.username, uuid: p.uuid, elo, rank: idx + 1, tier, fullData: p };
     });
   }, [filteredData, selectedMode]);
@@ -115,7 +114,7 @@ export default function Home() {
       header: 'Giocatore',
       cell: ({ row }: { row: Row<Player> }) => {
         const player = row.original;
-        const currentTier = (player[selectedMode as keyof Player] as string) || 'Unranked';
+        const currentTier = (player as Record<string, any>)[selectedMode] || 'Unranked';
         const overallPts = (player as any).calculatedOverall || computeOverallPoints(player);
         
         return (
@@ -152,7 +151,7 @@ export default function Home() {
       cell: ({ row }: { row: Row<Player> }) => {
         const p = row.original;
         if (selectedMode !== 'Overall') {
-          const tier = (p[selectedMode as keyof Player] as string) || 'Unranked';
+          const tier = (p as Record<string, any>)[selectedMode] || 'Unranked';
           return (
             <span className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-black text-sm border shadow-md ${getTierBadgeStyle(tier)}`}>
               <Image src={`/icons/${selectedMode.toLowerCase()}.svg`} alt={selectedMode} width={16} height={16} className="w-4 h-4 object-contain" />
@@ -160,13 +159,13 @@ export default function Home() {
             </span>
           );
         }
-        const activeModes = modes.filter(m => m !== 'Overall' && p[m] !== 'Unranked');
+        const activeModes = modes.filter(m => m !== 'Overall' && (p as Record<string, any>)[m] !== 'Unranked');
         return (
           <div className="flex flex-wrap gap-2 max-w-lg">
             {activeModes.map(m => (
-              <span key={m} className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md font-bold border transition-colors ${getTierBadgeStyle(p[m])}`}>
+              <span key={m} className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md font-bold border transition-colors ${getTierBadgeStyle((p as Record<string, any>)[m])}`}>
                 <Image src={`/icons/${m.toLowerCase()}.svg`} alt={m} width={14} height={14} className="w-3.5 h-3.5 object-contain" />
-                {p[m]}
+                {(p as Record<string, any>)[m]}
               </span>
             ))}
           </div>
@@ -211,7 +210,6 @@ export default function Home() {
           <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-blue-600 mx-auto rounded-full shadow-[0_0_15px_rgba(56,189,248,0.5)]" />
         </div>
 
-        {/* Top Stats - Aggiornate con icone personalizzate */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto mb-12">
           <motion.div whileHover={{ y: -2 }} className="bg-slate-900/60 backdrop-blur-xl border border-sky-500/20 p-5 rounded-3xl flex items-center justify-between shadow-xl">
             <div className="flex items-center gap-4">
@@ -232,7 +230,6 @@ export default function Home() {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Primo Attuale</div>
-                {/* Nome non più limitato e che va a capo se serve */}
                 <div className="text-2xl font-black text-amber-400 break-words pr-2">
                   {filteredData[0]?.username || 'N/A'}
                 </div>
@@ -241,7 +238,6 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Toolbar: Navigation Tabs & Search (Scrollbar nascosta) */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-16">
           <div className="flex gap-1.5 p-1.5 bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-800/80 shadow-inner overflow-x-auto w-full lg:w-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {modes.map(m => {
@@ -291,7 +287,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Podium Component */}
         {!globalFilter && top3Podium.length > 0 && (
           <div className="flex flex-col items-center md:flex-row justify-center gap-4 md:gap-8 mb-20 mt-10">
             {[top3Podium[1], top3Podium[0], top3Podium[2]].map((player, idx) => {
@@ -356,7 +351,6 @@ export default function Home() {
           </div>
         )}
 
-        {/* Table View */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -397,7 +391,6 @@ export default function Home() {
             </table>
           </div>
 
-          {/* Pagination */}
           {table.getPageCount() > 1 && (
             <div className="flex items-center justify-between px-6 py-4 bg-slate-950/80 border-t border-slate-800 text-sm text-slate-400">
               <div>
@@ -424,7 +417,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* Player Modal Redesign with Framer Motion (Scrollbar nascosta) */}
       <AnimatePresence>
         {selectedPlayer && (
           <motion.div 
@@ -494,7 +486,6 @@ export default function Home() {
               </div>
 
               <div className="relative z-10 mb-8">
-                {/* Aggiornato Tiers invece di Modalità Giocate e rimossa la stellina */}
                 <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
                   Tiers:
                 </h4>
