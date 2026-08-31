@@ -559,7 +559,7 @@ export default function Home() {
             <span>Made by <span className="text-slate-300 font-bold">00Abyssh_</span></span>
             <span className="hidden md:inline text-slate-700">•</span>
             <a
-              href="https://discord.gg/IL-TUO-INVITE"
+              href="https://discord.gg/cABR73BsyP"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sky-400 hover:text-sky-300 font-bold transition-colors"
