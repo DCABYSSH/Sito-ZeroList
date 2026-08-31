@@ -302,8 +302,6 @@ export default function Home() {
                 ? 'from-slate-300 to-slate-500 border-slate-300/50 shadow-slate-400/10'
                 : 'from-orange-400 to-orange-600 border-orange-400/50 shadow-orange-500/10';
 
-              const rankTextColors = isFirst ? 'text-yellow-400' : isSecond ? 'text-slate-300' : 'text-orange-400';
-
               return (
                 <motion.div 
                   key={player.username}
@@ -330,10 +328,7 @@ export default function Home() {
                   <div className={`w-56 md:w-72 bg-gradient-to-b ${podiumColors} p-[1px] rounded-t-3xl rounded-b-2xl shadow-2xl`}>
                     <div className="bg-[#040914] rounded-t-[23px] rounded-b-[15px] p-6 text-center h-full relative overflow-hidden">
                       <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-32 h-10 blur-2xl opacity-30 bg-gradient-to-b ${podiumColors}`} />
-                      
-                      <div className={`text-5xl font-black ${rankTextColors} drop-shadow-md mb-2`}>
-                        #{player.rank}
-                      </div>
+
                       <div 
                         onClick={() => player.fullData && setSelectedPlayer(player.fullData)}
                         className="text-xl font-bold text-white truncate cursor-pointer hover:text-sky-400 transition-colors"
@@ -415,6 +410,26 @@ export default function Home() {
             </div>
           )}
         </motion.div>
+
+        <footer className="mt-20 pt-10 border-t border-slate-800/60 text-center">
+          <p className="text-lg font-black text-white">
+            ZeroGrade <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">entra e domina la classifica</span>
+          </p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mt-5 pb-2 text-xs text-slate-500 font-medium">
+            <span>&copy; {new Date().getFullYear()} ZeroGrade Tierlist. Tutti i diritti riservati.</span>
+            <span className="hidden md:inline text-slate-700">•</span>
+            <span>Made by <span className="text-slate-300 font-bold">00Abyssh_</span></span>
+            <span className="hidden md:inline text-slate-700">•</span>
+            <a
+              href="https://discord.gg/IL-TUO-INVITE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sky-400 hover:text-sky-300 font-bold transition-colors"
+            >
+              Discord
+            </a>
+          </div>
+        </footer>
       </div>
 
       <AnimatePresence>
