@@ -43,97 +43,6 @@ const getTierBadgeStyle = (tier: string) => {
   }
 };
 
-// --- Icone native inline (nessun file .svg caricato) ---
-
-function IconPlayers({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <circle cx="9" cy="8" r="3.1" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M3.5 19c0-3 2.5-5.2 5.5-5.2s5.5 2.2 5.5 5.2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-      <circle cx="17" cy="9" r="2.3" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M15.2 19c0-2.1 1.1-3.9 3.3-4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function IconFirstPlace({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-      <path d="M12 3.2l2.15 4.4 4.85.7-3.5 3.4.83 4.85L12 14.2l-4.33 2.35.83-4.85-3.5-3.4 4.85-.7L12 3.2z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ModeIcon({ mode, className }: { mode: string; className?: string }) {
-  const props = { viewBox: '0 0 24 24', fill: 'none', xmlns: 'http://www.w3.org/2000/svg', className } as const;
-  switch (mode) {
-    case 'Sword':
-      return (
-        <svg {...props}>
-          <path d="M5 19l8.2-8.2M13.5 9.7l3.6-3.6a1.3 1.3 0 0 0 0-1.9l-.7-.7a1.3 1.3 0 0 0-1.9 0l-3.6 3.6M13.5 9.7l-3.5-3.5M6.7 17.3L5 19l-1.5-.4L3.1 17l1.6-1.6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'NethPot':
-      return (
-        <svg {...props}>
-          <path d="M9.6 3.2h4.8M10.1 3.2v2.9c0 .5-.2.9-.5 1.3L7.2 9.8c-.6.6-.9 1.4-.9 2.2v5.4A2.9 2.9 0 0 0 9.2 20h5.6a2.9 2.9 0 0 0 2.9-2.9V12c0-.8-.3-1.6-.9-2.2l-2.4-2.4a1.9 1.9 0 0 1-.5-1.3V3.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx="12" cy="14.8" r="1.3" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case 'DiaPot':
-      return (
-        <svg {...props}>
-          <path d="M9.6 3.2h4.8M10.1 3.2v2.9c0 .5-.2.9-.5 1.3L7.2 9.8c-.6.6-.9 1.4-.9 2.2v5.4A2.9 2.9 0 0 0 9.2 20h5.6a2.9 2.9 0 0 0 2.9-2.9V12c0-.8-.3-1.6-.9-2.2l-2.4-2.4a1.9 1.9 0 0 1-.5-1.3V3.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M12 12.3l1.9 2.1-1.9 2.1-1.9-2.1 1.9-2.1z" fill="currentColor" stroke="none" />
-        </svg>
-      );
-    case 'SMP':
-      return (
-        <svg {...props}>
-          <path d="M4 9.8L9.8 4l1.9 1.9-5.8 5.8-1.9-1.9z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-          <path d="M9.7 7.6l7.9 7.9-2.4 2.4-7.9-7.9" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-          <path d="M4.6 19.4l2.9-2.9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-      );
-    case 'Axe':
-      return (
-        <svg {...props}>
-          <path d="M12.8 4.1c2.9.4 5.1 2.6 5.5 5.5-3.2.5-6.4-1-8.3-3.5l2.8-2z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-          <path d="M9.8 6.3L4.6 19.4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-      );
-    case 'UHC':
-      return (
-        <svg {...props}>
-          <path d="M12 19.8s-6.8-4.3-6.8-9.3c0-2.7 2.1-5 4.6-5 1 0 1.9.4 2.2 1.3.3-.9 1.2-1.3 2.2-1.3 2.5 0 4.6 2.3 4.6 5 0 5-6.8 9.3-6.8 9.3z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'Mace':
-      return (
-        <svg {...props}>
-          <path d="M8.2 19.6L14 7.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          <path d="M12.6 5.6l1.7-1.7a.9.9 0 0 1 1.3 0l.5.5a.9.9 0 0 1 0 1.3l-1.7 1.7M10.7 7l-1.7 1.7a.9.9 0 0 0 0 1.3l.5.5a.9.9 0 0 0 1.3 0L12.5 8.8" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        </svg>
-      );
-    case 'SpearMace':
-      return (
-        <svg {...props}>
-          <path d="M5 19L18 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          <path d="M18 6l1.4-2.8M18 6l2.8 1.4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        </svg>
-      );
-    case 'Cpvp':
-      return (
-        <svg {...props}>
-          <path d="M12 3.3l4 4.1-4 13.3-4-13.3 4-4.1z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-          <path d="M8 7.4h8" stroke="currentColor" strokeWidth="1.4" />
-        </svg>
-      );
-    default:
-      return null;
-  }
-}
-
 interface LeaderboardPlayer {
   username: string;
   elo: number;
@@ -158,7 +67,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [copied, setCopied] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     fetch('/api/players')
@@ -182,15 +90,6 @@ export default function Home() {
       return (TIER_POINTS_MAP[tierB] || 0) - (TIER_POINTS_MAP[tierA] || 0);
     });
   }, [data, selectedMode]);
-
-  // Suggerimenti per l'autocomplete della ricerca ("Confronto")
-  const searchSuggestions = useMemo(() => {
-    const q = globalFilter.trim().toLowerCase();
-    if (!q) return [];
-    return data
-      .filter(p => p.username.toLowerCase().includes(q))
-      .slice(0, 6);
-  }, [data, globalFilter]);
 
   const top3Podium = useMemo<LeaderboardPlayer[]>(() => {
     return filteredData.slice(0, 3).map((p, idx) => {
@@ -248,14 +147,14 @@ export default function Home() {
     },
     {
       id: 'tiers',
-      header: selectedMode === 'Overall' ? 'Modalità' : 'Test',
+      header: selectedMode === 'Overall' ? 'Modalità' : 'Tier Assegnato',
       cell: ({ row }: { row: Row<Player> }) => {
         const p = row.original;
         if (selectedMode !== 'Overall') {
           const tier = (p as Record<string, any>)[selectedMode] || 'Unranked';
           return (
             <span className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg font-black text-sm border shadow-md ${getTierBadgeStyle(tier)}`}>
-              <ModeIcon mode={selectedMode} className="w-4 h-4 object-contain" />
+              <Image src={`/icons/${selectedMode.toLowerCase()}.svg`} alt={selectedMode} width={16} height={16} className="w-4 h-4 object-contain" />
               {tier}
             </span>
           );
@@ -265,7 +164,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-2 max-w-lg">
             {activeModes.map(m => (
               <span key={m} className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-md font-bold border transition-colors ${getTierBadgeStyle((p as Record<string, any>)[m])}`}>
-                <ModeIcon mode={m} className="w-3.5 h-3.5 object-contain" />
+                <Image src={`/icons/${m.toLowerCase()}.svg`} alt={m} width={14} height={14} className="w-3.5 h-3.5 object-contain" />
                 {(p as Record<string, any>)[m]}
               </span>
             ))}
@@ -311,30 +210,32 @@ export default function Home() {
           <div className="w-24 h-1.5 bg-gradient-to-r from-sky-500 to-blue-600 mx-auto rounded-full shadow-[0_0_15px_rgba(56,189,248,0.5)]" />
         </div>
 
-        {/* Statistiche */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-3 pl-1">
-            Statistiche
-          </div>
-          <div className="flex items-stretch bg-slate-900/50 border border-slate-800 rounded-2xl overflow-hidden">
-            <div className="flex-1 flex items-center gap-3 px-6 py-5">
-              <IconPlayers className="w-5 h-5 text-sky-400 shrink-0" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto mb-12">
+          <motion.div whileHover={{ y: -2 }} className="bg-slate-900/60 backdrop-blur-xl border border-sky-500/20 p-5 rounded-3xl flex items-center justify-between shadow-xl">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-sky-500/10 text-sky-400 rounded-2xl border border-sky-500/20 flex items-center justify-center">
+                <Image src="/icons/players.svg" alt="Giocatori" width={24} height={24} className="w-6 h-6 object-contain" />
+              </div>
               <div>
-                <div className="text-2xl font-black text-white leading-none">{data.length}</div>
-                <div className="text-[11px] text-slate-500 font-semibold mt-1.5">Giocatori registrati</div>
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Giocatori</div>
+                <div className="text-2xl font-black text-white">{data.length}</div>
               </div>
             </div>
-            <div className="w-px bg-slate-800" />
-            <div className="flex-1 flex items-center gap-3 px-6 py-5 min-w-0">
-              <IconFirstPlace className="w-5 h-5 text-amber-400 shrink-0" />
-              <div className="min-w-0">
-                <div className="text-2xl font-black text-amber-400 leading-none truncate">
+          </motion.div>
+          
+          <motion.div whileHover={{ y: -2 }} className="bg-slate-900/60 backdrop-blur-xl border border-amber-500/20 p-5 rounded-3xl flex items-center justify-between shadow-xl">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-amber-500/10 text-amber-400 rounded-2xl border border-amber-500/20 flex items-center justify-center">
+                <Image src="/icons/first-place.svg" alt="Primo Attuale" width={24} height={24} className="w-6 h-6 object-contain" />
+              </div>
+              <div className="flex flex-col justify-center">
+                <div className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Primo Attuale</div>
+                <div className="text-2xl font-black text-amber-400 break-words pr-2">
                   {filteredData[0]?.username || 'N/A'}
                 </div>
-                <div className="text-[11px] text-slate-500 font-semibold mt-1.5">Primo in classifica</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-16">
@@ -358,7 +259,7 @@ export default function Home() {
                   )}
                   <span className="relative z-10 flex items-center gap-2">
                     {m !== 'Overall' ? (
-                      <ModeIcon mode={m} className="w-4 h-4 object-contain" />
+                      <Image src={`/icons/${m.toLowerCase()}.svg`} alt={m} width={18} height={18} className="w-4 h-4 object-contain" />
                     ) : (
                       <Trophy size={18} />
                     )}
@@ -369,15 +270,12 @@ export default function Home() {
             })}
           </div>
 
-          {/* Confronto: ricerca con autocomplete */}
           <div className="relative w-full lg:w-80">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={18} />
             <input
               type="text"
               value={globalFilter ?? ''}
-              onChange={e => { setGlobalFilter(e.target.value); setShowSuggestions(true); }}
-              onFocus={() => setShowSuggestions(true)}
-              onBlur={() => setShowSuggestions(false)}
+              onChange={e => setGlobalFilter(e.target.value)}
               placeholder="Cerca giocatore..."
               className="w-full pl-11 pr-10 py-3.5 bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl text-sm font-medium focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 text-white placeholder-slate-500 transition-all shadow-inner"
             />
@@ -386,42 +284,6 @@ export default function Home() {
                 <X size={16} />
               </button>
             )}
-
-            <AnimatePresence>
-              {showSuggestions && searchSuggestions.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute left-0 right-0 mt-2 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-2xl shadow-2xl overflow-hidden z-30"
-                >
-                  {searchSuggestions.map(p => (
-                    <button
-                      key={p.uuid}
-                      onMouseDown={(e) => e.preventDefault()}
-                      onClick={() => {
-                        setGlobalFilter(p.username);
-                        setShowSuggestions(false);
-                        setSelectedPlayer(p);
-                      }}
-                      className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-slate-800/60 transition-colors text-left"
-                    >
-                      <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-slate-800 border border-slate-700 shrink-0">
-                        <Image 
-                          src={`https://skins.mcstats.com/bust/${p.uuid}`} 
-                          alt={p.username} 
-                          fill
-                          className="object-contain object-top" 
-                          unoptimized 
-                        />
-                      </div>
-                      <span className="text-sm font-semibold text-white truncate">{p.username}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </div>
 
@@ -439,6 +301,8 @@ export default function Home() {
                 : isSecond 
                 ? 'from-slate-300 to-slate-500 border-slate-300/50 shadow-slate-400/10'
                 : 'from-orange-400 to-orange-600 border-orange-400/50 shadow-orange-500/10';
+
+              const rankTextColors = isFirst ? 'text-yellow-400' : isSecond ? 'text-slate-300' : 'text-orange-400';
 
               return (
                 <motion.div 
@@ -466,7 +330,10 @@ export default function Home() {
                   <div className={`w-56 md:w-72 bg-gradient-to-b ${podiumColors} p-[1px] rounded-t-3xl rounded-b-2xl shadow-2xl`}>
                     <div className="bg-[#040914] rounded-t-[23px] rounded-b-[15px] p-6 text-center h-full relative overflow-hidden">
                       <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-32 h-10 blur-2xl opacity-30 bg-gradient-to-b ${podiumColors}`} />
-
+                      
+                      <div className={`text-5xl font-black ${rankTextColors} drop-shadow-md mb-2`}>
+                        #{player.rank}
+                      </div>
                       <div 
                         onClick={() => player.fullData && setSelectedPlayer(player.fullData)}
                         className="text-xl font-bold text-white truncate cursor-pointer hover:text-sky-400 transition-colors"
@@ -548,26 +415,6 @@ export default function Home() {
             </div>
           )}
         </motion.div>
-
-        <footer className="mt-20 pt-10 border-t border-slate-800/60 text-center">
-          <p className="text-lg font-black text-white">
-            ZeroGrade <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">entra e domina la classifica</span>
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mt-5 pb-2 text-xs text-slate-500 font-medium">
-            <span>&copy; {new Date().getFullYear()} ZeroGrade Tierlist. Tutti i diritti riservati.</span>
-            <span className="hidden md:inline text-slate-700">•</span>
-            <span>Made by <span className="text-slate-300 font-bold">00Abyssh_</span></span>
-            <span className="hidden md:inline text-slate-700">•</span>
-            <a
-              href="https://discord.gg/cABR73BsyP"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sky-400 hover:text-sky-300 font-bold transition-colors"
-            >
-              Discord
-            </a>
-          </div>
-        </footer>
       </div>
 
       <AnimatePresence>
@@ -651,8 +498,8 @@ export default function Home() {
                     return (
                       <div key={m} className="flex items-center justify-between p-3 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm hover:border-slate-700 transition-colors">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center p-1.5 text-slate-300">
-                            <ModeIcon mode={m} className="w-full h-full object-contain" />
+                          <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center p-1.5">
+                            <Image src={`/icons/${m.toLowerCase()}.svg`} alt={m} width={20} height={20} className="object-contain" />
                           </div>
                           <span className="text-sm font-bold text-white">{m}</span>
                         </div>
